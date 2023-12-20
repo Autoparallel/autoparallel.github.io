@@ -1,0 +1,1085 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Poseidon Journal</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview/index.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="overview/curriculum.html"><strong aria-hidden="true">1.1.</strong> Curriculum</a></li><li class="chapter-item expanded "><a href="overview/motivation.html"><strong aria-hidden="true">1.2.</strong> motivation</a></li></ol></li><li class="chapter-item expanded "><a href="poseidon/index.html"><strong aria-hidden="true">2.</strong> Poseidon</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="poseidon/construction.html"><strong aria-hidden="true">2.1.</strong> Construction</a></li><li class="chapter-item expanded "><a href="poseidon/scalar_field.html"><strong aria-hidden="true">2.2.</strong> Scalar Field</a></li><li class="chapter-item expanded "><a href="poseidon/sponge.html"><strong aria-hidden="true">2.3.</strong> Sponge</a></li><li class="chapter-item expanded "><a href="poseidon/permutation.html"><strong aria-hidden="true">2.4.</strong> Permutation</a></li><li class="chapter-item expanded "><a href="poseidon/s-boxes.html"><strong aria-hidden="true">2.5.</strong> S-Boxes</a></li><li class="chapter-item expanded "><a href="poseidon/linear_layer.html"><strong aria-hidden="true">2.6.</strong> Linear Layer</a></li><li class="chapter-item expanded "><a href="poseidon/round_constants.html"><strong aria-hidden="true">2.7.</strong> Round Constants</a></li></ol></li><li class="chapter-item expanded "><a href="security/index.html"><strong aria-hidden="true">3.</strong> Security</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="security/linear_cryptanalysis.html"><strong aria-hidden="true">3.1.</strong> Linear Cryptanalysis</a></li><li class="chapter-item expanded "><a href="security/differential_cryptanalysis.html"><strong aria-hidden="true">3.2.</strong> Differential Cryptanalysis</a></li><li class="chapter-item expanded "><a href="security/algebraic_cryptanalysis.html"><strong aria-hidden="true">3.3.</strong> Algebraic Cryptanalysis</a></li><li class="chapter-item expanded "><a href="security/new_thoughts.html"><strong aria-hidden="true">3.4.</strong> New Ideas for attacks</a></li></ol></li><li class="chapter-item expanded "><a href="resources/index.html"><strong aria-hidden="true">4.</strong> Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/blogs_and_code.html"><strong aria-hidden="true">4.1.</strong> Blogs and Code</a></li><li class="chapter-item expanded "><a href="resources/videos_talks.html"><strong aria-hidden="true">4.2.</strong> Videos and talks</a></li><li class="chapter-item expanded "><a href="resources/people_courses.html"><strong aria-hidden="true">4.3.</strong> People and courses</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Poseidon Journal</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="diving-into-poseidon-hash-and-its-security"><a class="header" href="#diving-into-poseidon-hash-and-its-security">Diving into Poseidon hash and its security</a></h1>
+<p>The purpose of this work is to document a thorough understanding of the Poseidon hash function and its security. 
+This document is a work in progress and will be updated as we and the community learn more about the topic.</p>
+<p>As a forewarning, this document is a continual work in progress.
+Material in here is subject to change, there may be errors, and there may be things that are not fully explained.
+We would love to hear your feedback and suggestions for improvement and are happy to answer any questions you may have.
+Community engagement, open source development, and collaborative learning are core values for us, so please reach out!</p>
+<h2 id="contents"><a class="header" href="#contents">Contents</a></h2>
+<ul>
+<li><strong>Overview</strong>
+<ul>
+<li><strong>Curriculum</strong>: Providing you with a list of relevant topics that will come up with Poseidon.</li>
+<li><strong>Goals</strong>: Providing you with a list of goals that we want to achieve with this repository.</li>
+</ul>
+</li>
+<li><strong>Poseidon</strong>
+<ul>
+<li><strong>Construction</strong>: Explaining the construction of the Poseidon hash function at a high level.</li>
+<li><strong>Scalar Field</strong>: Explaining how scalar (finite) fields are used in Poseidon.</li>
+<li><strong>Sponge</strong>: Explaining the sponge construction used in Poseidon both intuitively and formally.</li>
+<li><strong>Permutation</strong>: Explaining the permutation used in Poseidon intuitively.</li>
+<li><strong>S-Boxes</strong>: Explaining the S-Boxes used in Poseidon formally and comparing to techniques used in other hashes.</li>
+<li><strong>Linear Layer</strong>: Explaining the linear layer used in Poseidon formally.</li>
+<li><strong>Round Constants</strong>: Explaining the round constants used in Poseidon formally.</li>
+</ul>
+</li>
+<li><strong>Security</strong>
+<ul>
+<li><strong>Linear Cryptanalysis</strong>: Explaining linear cryptanalysis and how it can be used to attack Poseidon.</li>
+<li><strong>Differential Cryptanalysis</strong>: Explaining differential cryptanalysis and how it can be used to attack Poseidon.</li>
+<li><strong>Algebraic Cryptanalysis</strong>: Explaining algebraic cryptanalysis and how it can be used to attack Poseidon.</li>
+<li><strong>New Thoughts</strong>: Explaining new thoughts on cryptanalysis of Poseidon.</li>
+</ul>
+</li>
+</ul>
+<h2 id="poseidon-crate"><a class="header" href="#poseidon-crate">Poseidon crate</a></h2>
+<p>We are also developing our own hand-baked implementation of Poseidon in Rust.
+This is a work in progress, but the code is located in <code>./poseidon</code> and can be built via <code>cargo build</code>.</p>
+<h3 id="purpose"><a class="header" href="#purpose">Purpose</a></h3>
+<p>To understand something well, it is often helpful to implement it yourself.
+Plus, we are strong believers that researchers should be able to implement their own ideas and test them out.
+Researchers can be builders, and builders can do research (and love math!).</p>
+<h3 id="intention"><a class="header" href="#intention">Intention</a></h3>
+<p>The idea is to implement Poseidon in Rust and then use it to test out different ideas and attacks.
+The production versions of Poseidon should also be tested in their own right, but we plan to test the methodology of Poseidon and, given that, it is nice to make Poseidon less secure to demonstrate how to find collisions, find preimages, and orchestrate attacks all in one place and without it taking an unbelievable amount of time. 
+Keep in mind, searching through the space of all possible hashes is a very large space, so even with a noticeably less secure version of Poseidon, it will still take a long time to find collisions and preimages!</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="curriculum-and-content"><a class="header" href="#curriculum-and-content">Curriculum and Content</a></h1>
+<p>This Mdbook will present the knowledge required to understand the security assumptions of algebraic hash functions, particularly Poseidon.</p>
+<p>Poseidon is commonely used in Zero-Knowledge (ZK) cryptography both of which require background knowledge in some mathematics.
+This document aims to provide a curriculum for learning the necessary mathematics to understand cryptography and its primitives.
+We will also provide a list of resources for learning the material.</p>
+<h2 id="background"><a class="header" href="#background">Background</a></h2>
+<p>We list here some of the essential background for hash functions and cryptography.</p>
+<h3 id="cryptography"><a class="header" href="#cryptography">Cryptography</a></h3>
+<p>Cryptography is the formal study of techniques for secure communication across insecure channels.
+Cryptography aims to allow two parties to communicate securely, even if an adversary can listen to all of their communications.
+Secure communication can be explained intuitively by the following analogy:
+Two parties want to send a message to one another but do not want any third party to see the message. 
+Each party can write a message on a piece of paper, put the paper in a box, and lock the box with a padlock.
+The message is secure if the other party is the only one with the key to the padlock.
+However, sharing the key poses a problem; there are many ways to pick locks!</p>
+<h3 id="proofs"><a class="header" href="#proofs">Proofs</a></h3>
+<p>The idea of mathematical proofs is the first stepping stone to understanding the implications of ZK cryptography.
+A proof is a string of facts (or axioms) that lead to a conclusion. 
+For instance, we may want to prove that we own a particular online account.
+One way to do this would be to use this account to make a signature on a message.
+A signature proves that we have access to the account and are the owner.
+Of course, anyone with access to the account can forge a signature.
+Another example of a proof would be showing that an entity is a member of a particular group (not necessarily a mathematical group).
+For example, say an individual wants to prove they are over 21 without revealing their age or birthday or in other words that they are member of the group of people over 21.</p>
+<h3 id="hash-functions"><a class="header" href="#hash-functions">Hash Functions</a></h3>
+<p>Hash functions are a fundamental primitive of cryptography. Hash functions are used for data integrity and often in combination with digital signatures. With a good hash function, even a 1-bit change in a message will produce a different hash (on average, half of the bits change). A message is hashed with digital signatures, and then the hash itself is signed. Hash functions must have the following properties if they are to be considered secure:</p>
+<ul>
+<li><strong>Deterministic</strong>: The same input always produces the same output.</li>
+<li><strong>Pre-image resistant</strong>: Given a hash, finding a message that hashes to that value is computationally infeasible. In other words, the hash is invertible.</li>
+<li><strong>Collision resistant</strong>: Finding two messages that hash to the same value is computationally infeasible.</li>
+</ul>
+<p>The following properties are not required for security but are desirable in specific applications:</p>
+<ul>
+<li><strong>Efficient</strong>: The hash function should be efficient to compute.</li>
+<li><strong>Fixed output size</strong>: The hash function should produce a fixed-size output.</li>
+</ul>
+<h4 id="applications"><a class="header" href="#applications">Applications</a></h4>
+<p>Hash functions, serving as a one way function, play a crucial role in various applications, including:</p>
+<ul>
+<li>
+<p><strong>Data Integrity</strong>: Hash functions ensure data integrity by generating unique hash values for different data inputs. Any alteration in the data, however minor, results in a different hash value, indicating a breach in data integrity.</p>
+</li>
+<li>
+<p><strong>Password Storage</strong>: Hash functions store passwords securely. Instead of storing the actual password, the hash of the password is stored in what is called the <em>shadow file</em>. The entered password is hashed and compared with the stored hash value when authentication is required.</p>
+</li>
+<li>
+<p><strong>Digital Signatures</strong>: Hash functions are integral to creating digital signatures. The data is hashed, and the hash value is encrypted using a private key to create a digital signature. This ensures the authenticity and integrity of the data.</p>
+</li>
+</ul>
+<p>Hash functions also play a critical role in the software engineers' toolbox. For example, a hashmap is a data structure that uses a hash function to map keys to values. This allows for efficient lookup of values given a key, which can improve the performance of algorithms and increase user experience. Another example would be a merkle tree which is often used to represents the integrity of relationships between data. </p>
+<h3 id="algebraic-hash-functions"><a class="header" href="#algebraic-hash-functions">Algebraic hash functions</a></h3>
+<p>Algebraic hash functions are a particular class of hash functions used in ZK cryptography. Historically, most hash functions have output values that are binary strings. On the other hand, Algebraic hash functions produce values that are elements of a finite field. This allows for more efficient computation of the hash function and more efficient proving times for ZK proofs.</p>
+<h3 id="mathematics"><a class="header" href="#mathematics">Mathematics</a></h3>
+<p>Underlying cryptography is much mathematics, and as a result, some mathematical background is essential.
+For example, we discuss prime numbers, factorization, and modular arithmetic.
+We can also build more involved structures on these, such as polynomials.
+We will lean towards discussing and evaluating Posiedon in the context of algebra and geometry as these views shed light on the additional structure that algebraic hash functions have and are less explored at large. </p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="motivation"><a class="header" href="#motivation">Motivation</a></h1>
+<p>Zero-Knowledge (ZK) has seem a lot utilization and innovation in the past few years, and is thus worth criticial examination. 
+ZK cryptography uses a variety of cryptographic primitives to achieve its goals. 
+These primitives are often based on new and novel mathematics. 
+As a result, the security of these primitives is not as well understood as the security of more traditional primitives like RSA and AES. 
+For example, we rely on the security of <em>algebraic</em> hash functions.</p>
+<p>Operating on the premise that ZK will bring massive changes to the world, not just for blockchains but also for the broader technical infrastructure of the world. 
+For example, with applications like privacy preserving machine learning, and MPC, there are boundless benifits of contributing to the security of these cryptographic primitives. 
+However, unless these chemes are proven to be secure, they will not be useful let alone adopted.</p>
+<p>It is our target objective to create some evidence for or against the security of algebraic hash functions.
+We aim are to put together a practical guide to understanding the security assumptions in algebraic hash functions and their known algebraic attacks. 
+We will aim to cover and more deeply understand what the security assumption in Poseidon.</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="poseidon"><a class="header" href="#poseidon">Poseidon</a></h1>
+<p>Poseidon is an example of an <em>algebraic</em> hash function.
+Succinctly, this means that the operations used in the hash involve addition and multiplication (i.e., algebraic manipulation) of elements in a finite fields as opposed to bitwise operations which are present in other hashing algorithms.
+Poseidon itself was introduced in the paper: <a href="https://eprint.iacr.org/2019/458.pdf">Poseidon: A New Hash Function for Zero-Knowledge Proof Systems</a> by Grassi et al.. 
+It presents a new cryptographic hash function, Poseidon, optimized for use in practical computational integrity proof systems like SNARKs, STARKs, and Bulletproofs. 
+The paper describes the design, implementation, and security analysis of Poseidon, highlighting its efficiency in zero-knowledge (ZK) proof systems, particularly in scenarios requiring the proving of preimage knowledge under a hash function. 
+The authors focus on the hash function's modular framework, efficiency in large prime fields, and its comparative advantage over existing functions like SHA-256 and Pedersen Hash in terms of computational cost. 
+Additionally, the paper details the cryptanalysis of Poseidon, emphasizing its resilience to various types of attacks, and demonstrates its practical applications in systems like Merkle trees and zero-knowledge proofs.</p>
+<h2 id="reasoning"><a class="header" href="#reasoning">Reasoning</a></h2>
+<p>Hash functions are ubiquitous in modern computing and cryptography, see the <a href="poseidon/../overview/curriculum.html">curriculum section</a> for more details.
+At a high level, hashing is an extremely important operation in computing since it provides a means of having a &quot;random oracle&quot; which is a function that maps input data to output data in a completely &quot;random&quot; way.
+These random oracles are not only needed in computation (e.g., for mappings and other collections, data validation, compression, etc.) but are also used implicitly to take interactive arguments and convert them into non-interactive arguments (this is Shamir's trick).
+The reality is that we need hash functions for a lot of things, and we need them to be fast and secure.
+By secure, we mean that they are hard to invert (i.e., find preimages) and hard to find collisions (i.e., find two inputs that hash to the same output).
+This comes down the quality of the hash function's output distribution or randomness, which is a function of the hash function's design.</p>
+<p>The main reason why algebraic hash functions, in particular over their non-algebraic counterparts, are important today is their use in ZK proving systems.
+These systems rely on <em>arithmetization</em>. 
+In essence, arithmetization takes a computer algorithm and rewrites it in terms of a sequence polynomial operations which we can call <em>arithmetic circuits</em>.
+Operations such as <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6111em;"></span><span class="mord"><span class="mord mathtt">XOR</span></span></span></span></span> are fundamentally more expensive to arithmetize than their algebraic counterparts like addition and multiplication.
+This is because arithmetic circuits are built from algebraic operations over finite fields that we previously mentioned.</p>
+<h2 id="reading-the-paper"><a class="header" href="#reading-the-paper">Reading the paper</a></h2>
+<p>If you decide to read the Poseidon paper <a href="https://eprint.iacr.org/2019/458.pdf">Poseidon: A New Hash Function for Zero-Knowledge Proof Systems</a>, then here are some notes to help you along the way.</p>
+<h3 id="design-of-poseidon"><a class="header" href="#design-of-poseidon">Design of POSEIDON</a></h3>
+<ul>
+<li><strong>Architecture</strong>: Describes the unique construction of Poseidon, focusing on its efficiency and security.
+Security is outlined in terms of the parameters available to the designer, including the number of rounds, the size of the finite field, the algebraic properties of the S-boxes, and the sponge capacity and rate.
+We cover these details in the sections of this chapter.</li>
+<li><strong>Comparison</strong>: Compares Poseidon with existing hash functions, highlighting its advantages.</li>
+</ul>
+<h3 id="security-analysis"><a class="header" href="#security-analysis">Security Analysis</a></h3>
+<ul>
+<li><strong>Resilience</strong>: Discusses the cryptographic strength of Poseidon against various attack vectors.</li>
+<li><strong>Cryptanalysis</strong>: Provides a detailed analysis of the hash function's resistance to common cryptographic attacks.</li>
+</ul>
+<p>These are the most important sections of the paper, for us. 
+We are very interested in the security of the hash function and its resistance to attacks since this is a fundamental tool used in present day ZK proof systems.
+The advantages of Poseidon are meaningless if the has function is not secure!</p>
+<h3 id="implementation-and-performance"><a class="header" href="#implementation-and-performance">Implementation and Performance</a></h3>
+<ul>
+<li><strong>Practical Application</strong>: Details how Poseidon is implemented in systems like SNARKs and Merkle trees.</li>
+<li><strong>Efficiency</strong>: Emphasizes the computational efficiency of Poseidon, especially in proving preimage knowledge.</li>
+</ul>
+<p>These results highlight the practicality of Poseidon in real-world applications.
+If it weren't for the efficiency of Poseidon, then it would not be a good candidate for use in ZK proof systems and we could continue to use other hash functions like SHA-256.</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="construction"><a class="header" href="#construction">Construction</a></h1>
+<p>Poseidon has a few core building blocks that are used to construct the hash function.
+Each of the building blocks have their own parameters, and the security of the hash function depends on the choice of these parameters.
+Poseidon implementations are built up by stringing these building blocks in a a flexible way, but the suggested implementations in the paper make specific choices due to their security and efficiency.</p>
+<p>The <em>Hades design strategy</em>, used in the Poseidon hash function, is a cryptographic approach that optimizes the trade-off between security and efficiency. 
+It incorporates a mix of full and partial rounds within the hash function. 
+Full rounds apply a non-linear operation (like an S-box) to all elements of the state, offering high security. 
+Partial rounds, on the other hand, apply this operation to only a subset of the state elements, enhancing efficiency. 
+This combination allows for maintaining strong cryptographic security while reducing the computational overhead typically associated with full rounds in every step. 
+This design is particularly beneficial in contexts like zero-knowledge proofs, where efficiency is crucial without compromising security. 
+The paper highlights how the choice of the MDS matrix in HADES significantly affects security against differential and linear attacks.</p>
+<h2 id="scalar-field"><a class="header" href="#scalar-field">Scalar Field</a></h2>
+<p>A scalar field in the context of is a set of elements, along with operations of addition and multiplication, that follows certain rules (like commutativity, associativity, distributivity, and the existence of additive and multiplicative identities). 
+First, we choose a size <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span></span></span></span> of the finite field <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> to work with where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0435em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span> for some prime <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span> and some integer <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>.
+Note that Poseidon actually uses a finite field that arises as the scalar field of an elliptic curve, but for simplicity we will just think of it as a finite field. </p>
+<ul>
+<li>This size <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span></span></span></span> will be an important security parameter for the hash function.</li>
+</ul>
+<p>Unlike other hash functions, Poseidon does not require the input to be a string of bits and rather the input will be a string of elements in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> which we will call <em>chunks</em>.
+More on that can be found in the <a href="poseidon/./scalar_field.html">scalar field section</a>.</p>
+<h2 id="sponge"><a class="header" href="#sponge">Sponge</a></h2>
+<p>Like other hash algorithms, Poseidon uses the <em>sponge</em> construction.
+Sponges are a general way to read in a data stream at some rate, allow for mixing of the data within the capacity of the sponge, and then output a fixed-size hash of the data.
+There are two important parameters that are used to construct the sponge that have impact to the security of the hash function:</p>
+<ul>
+<li>The <em>rate</em> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> which decides how many chunks of size <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span> are &quot;absorbed&quot; into the sponge in each step;</li>
+<li>The <em>capacity</em> which decides how many chunks of size <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span> are stored in the sponge in each step.</li>
+</ul>
+<p>The higher the rate, the faster and cheaper the hash becomes, but this makes the hash less secure, too.
+Intuitively, the larger the capacity, the more random state you allow yourself to store in the sponge in each step. 
+We go deeper into the sponge and its use in general in the <a href="poseidon/./sponge.html">sponge section</a>.</p>
+<h2 id="permutation"><a class="header" href="#permutation">Permutation</a></h2>
+<p>The sponge alone will not produce a secure hash function.
+We also need to have the data be mixed inside the sponge in some way that is difficult to invert and reduces the chance of collisions.
+Poseidon uses integer powers (on selected chunks in the sponge) to permute the state. 
+For instance, we may go through each chunk of the sponge and apply the map <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> for <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> (which is an example of an S-Box).
+We could also apply a linear transformation to the whole state of the sponge to do wider-scale mixing (which is an example of a linear layer).
+The particular permutation used in Poseidon is a combination of two different types of operations: <em>S-Boxes</em> and <em>linear layers</em>. 
+We will explain these in their own sections, but for more intuition on the Poseidon permutation techniques, see the <a href="poseidon/./permutation.html">permutation section</a>.</p>
+<h3 id="s-boxes"><a class="header" href="#s-boxes">S-Boxes</a></h3>
+<p><em>S-Boxes</em> are a common tool in cryptography that are used to introduce non-linearity into a system.
+They come in many different forms, but the S-Boxes used in Poseidon are essentially a sequence of operations that are applied to each chunk in the sponge.
+The S-Boxes can use different functions (e.g., <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> or <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>) or be full or partial rounds. These choices all impact the security for the hash function.
+That is, security of the hash function from the S-Box alone depends on the choice of:</p>
+<ul>
+<li>The function used in the S-Box (i.e., the exponent of the power function);</li>
+<li>Number of full rounds;</li>
+<li>Number of partial rounds.</li>
+</ul>
+<p>For details on the s-boxes, see the <a href="poseidon/./s-boxes.html">S-Boxes section</a>.</p>
+<h3 id="linear-layer"><a class="header" href="#linear-layer">Linear Layer</a></h3>
+<p>In order to prevent certain algebraic attacks, POSEIDON also implements another stage of mixing in the <em>linear layer</em>. 
+These are essentially big matrices that are applied to all of the chunks that make up the state of the sponge (as if they are a vector).
+In the paper, the suggested linear layer uses Cauchy matrices. 
+Security of the hash function from the linear layer depends on the choice of:</p>
+<ul>
+<li>The number of rounds of the linear layer;</li>
+<li>The choice of matrix used in the linear layer.</li>
+</ul>
+<p>For more details on the linear layer, see the <a href="poseidon/./linear_layer.html">linear layer section</a>.</p>
+<h3 id="substitution-permutation-networks"><a class="header" href="#substitution-permutation-networks">Substitution-Permutation Networks</a></h3>
+<p>A Substitution-Permutation Network (SPN) is a method used in block cipher design. 
+It involves a series of linked operations, including substitution (replacing bits with other bits) and permutation (rearranging bits). 
+This structure is known for its effectiveness in creating confusion and diffusion, important principles in cryptography.</p>
+<p>A Partial SPN (PSPN) differs from a full SPN in that the substitution step is not applied to all bits in each round. 
+Instead, it substitutes only a subset of the bits, which can enhance efficiency while still maintaining a good level of security. 
+This selective application of substitution is the key difference between PSPN and full SPN designs.</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="scalar-field-1"><a class="header" href="#scalar-field-1">Scalar Field</a></h1>
+<p>Poseidon uses a scalar field from an elliptic curve which of size <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0435em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span> for some prime <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span> and some integer <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>.
+These are often called <em>finite fields</em> or, in particular when <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>, <em>prime fields</em>.
+When <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>, these are called <em>extension fields</em> or <em>Galois fields</em>.
+Elliptic curves provide a natural way to construct scalar fields, and many modern cryptographic systems use elliptic curves.</p>
+<p>Many ZKP systems, especially zk-SNARKs, are built around elliptic curve cryptography (ECC). 
+Using a scalar field derived from the same elliptic curve ensures that all operations are in the same field, simplifying and optimizing computations. 
+These come in the form of operations such as <a href="https://medium.com/@VitalikButerin/exploring-elliptic-curve-pairings-c73c1864e627">pairing computations</a>, which are more efficiently conducted in the scalar field of an elliptic curve. 
+Scalar fields from elliptic curves often provide more robust security properties than standard finite fields for a given field size. 
+These properties of elliptic curves are due to the more complex structure of elliptic curves, which can increase the difficulty of specific cryptographic attacks.</p>
+<p>For a given level of security, elliptic curves often use smaller critical sizes than algorithms based on standard finite fields. 
+This results in better performance and smaller memory usage, which is particularly advantageous in constrained environments. 
+Since many modern cryptographic systems use elliptic curves, designing a hash function that operates in the same domain can facilitate better interoperability between cryptographic primitives and protocols.</p>
+<h2 id="mathematical-details"><a class="header" href="#mathematical-details">Mathematical Details</a></h2>
+<ul>
+<li>
+<p>A scalar field associated with an elliptic curve is the field over which the elliptic curve is defined. In elliptic curve cryptography (ECC), these fields are typically either prime fields denoted as <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> (where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span> is prime) or binary fields denoted as <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8915em;vertical-align:-0.2026em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.4974em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.782em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2026em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+</li>
+<li>
+<p><strong>Prime Fields (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>):</strong></p>
+<ul>
+<li>In a prime field, the operations of addition, subtraction, multiplication, and division (excluding division by zero) are defined modulo a prime number <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span>. </li>
+<li>Elliptic curves over prime fields are defined by equations with coefficients in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>, which we call the <em>scalar field</em>.</li>
+<li>An example of such a curve is the <a href="https://neuromancer.sk/std/secg/secp256r1">secp256r1 curve</a>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Binary Fields (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8915em;vertical-align:-0.2026em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.4974em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.782em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2026em;"><span></span></span></span></span></span></span></span></span></span>):</strong></p>
+<ul>
+<li>Binary fields are a special case of finite fields of prime power order, where the prime is 2. Here, the field has <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span> elements, and the operations are performed modulo an irreducible polynomial of degree <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> (which comes from Galois extensions).</li>
+<li>Elliptic curves over binary fields are particularly useful in certain cryptographic applications due to their efficient implementation in hardware and software. 
+For instance, you can use Fast Fourier Transform (FFT) algorithms to perform multiplication in binary fields, which is more efficient than the multiplication algorithms used in prime fields.</li>
+<li>An example is the <a href="https://neuromancer.sk/std/nist/B-283">NIST B-283 curve</a>.</li>
+</ul>
+</li>
+</ul>
+<p>The size of the scalar field of an elliptic curve, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0991em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span>, indicates the number of elements in the field. 
+The choice between prime fields and binary fields can impact the efficiency, security, and complexity of the cryptographic algorithms that use these elliptic curves.</p>
+<h3 id="cryptographic-significance"><a class="header" href="#cryptographic-significance">Cryptographic Significance</a></h3>
+<p>The properties of the scalar field, including its size, play a crucial role in the security of ECC. 
+They determine the complexity of the <a href="https://en.wikipedia.org/wiki/Discrete_logarithm">discrete logarithm problem</a>, which is the foundation of the security in ECC-based cryptographic systems.</p>
+<h3 id="poseidon-implementation"><a class="header" href="#poseidon-implementation">Poseidon Implementation</a></h3>
+<p>Poseidon reference implementations use various different scalar fields from different elliptic curves in order to provide flexibility and interoperability with other cryptographic primitives as well as more freedom in choosing the security parameters.
+Specifically, the curves are from the families:</p>
+<ul>
+<li><a href="https://neuromancer.sk/std/bn/">BN curves</a> (Barreto-Naehrig curves)</li>
+<li><a href="https://neuromancer.sk/std/bls/">BLS curves</a> (Boneh-Lynn-Shacham curves)</li>
+<li><a href="https://neuromancer.sk/std/other/Ed25519">ED curves (one example)</a> (Edwards-curve Digital Signature Algorithm)
+The specific choice of curve is up to the user.
+Recall, the size of the scalar field is a security parameter for the hash function, so the choice of curve itself does not impact security so long as the size is the same!</li>
+</ul>
+<h2 id="implementation"><a class="header" href="#implementation">Implementation</a></h2>
+<p>TODO: Add a snippet from our Poseidon crate here that shows what we are doing to get these fields.</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="sponge-1"><a class="header" href="#sponge-1">Sponge</a></h1>
+<p>Sponges are used in cryptography to absorb data of any size and produce a fixed-size output. 
+They are used in hash functions, pseudo-random number generators, stream ciphers, and authenticated encryption schemes.
+More can be found at this <a href="https://en.wikipedia.org/wiki/Sponge_function">link</a>.</p>
+<h2 id="why-we-call-it-a-sponge"><a class="header" href="#why-we-call-it-a-sponge">Why we call it a sponge</a></h2>
+<p><strong>The Sponge (State) Idea:</strong>
+Think of the sponge as having two action: it first absorbs input data like a sponge absorbs liquid, and subsequently this data gets squeezed to produce output data like a sponge releases liquid. 
+In cryptographic terms, this sponge is the internal <strong>state</strong> of the hash function.</p>
+<ol>
+<li>
+<p><strong>Absorbing Phase:</strong></p>
+<ul>
+<li>Data such as a message, a file, or a number is divided into blocks, for instance, of a given number of bits or the size of a finite field.</li>
+<li>Each block of your input data is &quot;absorbed&quot; into the sponge where it is then mixed with the residual data (like the residual &quot;liquid&quot;) in the sponge. 
+The absorption and mixing process are defined concretely by the rate and capacity of the sponge respectively.
+This mixing process can be thought of like absorbing some new blue colored water into one chunk of the sponge and some new red in another while there is already some green soaking in the rest of the sponge. 
+Fitting to the analogy, to truly mix these, the sponge would be allowed to sit where diffusion of the colors would occur.
+In the cryptographic case, we use a permutation to mix the data like diffusion can mix the colors.</li>
+</ul>
+</li>
+<li>
+<p><strong>Squeezing Phase:</strong></p>
+<ul>
+<li>Once the sponge has absorbed all your data (or all the colored water in the analogy), it's time to get the hash output, similar to squeezing water out of the sponge.</li>
+<li>In the squeezing phase, part of the sponge's state is read out as the hash result. 
+If the desired hash output is longer, the sponge might be &quot;squeezed&quot; multiple times, with additional transformations in between to ensure security.
+If it is shorter, the sponge is squeezed only once, and the output is truncated to the desired length.
+By squeezing the sponge, we are essentially wringing out the water, leaving us with a fixed amount of water (the hash) that is a mix of all the colors (the input data).
+The blue, red, and green water in our analogy now becomes a single murky brownish purplish color, which is the hash output.
+Could you ever get the original colors back from this let alone the order they were added in?</li>
+</ul>
+</li>
+</ol>
+<h3 id="why-are-sponges-convenient"><a class="header" href="#why-are-sponges-convenient">Why are sponges convenient?</a></h3>
+<ol>
+<li>
+<p><strong>Flexibility with Input Sizes:</strong></p>
+<ul>
+<li>The sponge construction can handle input data of any size. 
+It absorbs data block by block until all data is processed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fixed Output Size:</strong></p>
+<ul>
+<li>The hash function produces outputs of a fixed size, regardless of the input size.</li>
+</ul>
+</li>
+<li>
+<p><strong>Security:</strong></p>
+<ul>
+<li>The mixing and transformation processes in the sponge ensure that even a small change in the input (like adding a drop of differently colored water) leads to a completely different and unpredictable output, which is a crucial aspect of secure hash functions.</li>
+</ul>
+</li>
+</ol>
+<h2 id="sponge-construction"><a class="header" href="#sponge-construction">Sponge Construction</a></h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Sponge_function">Wikipedia: Sponge function article</a> breaks down the sponge nicely, but it does so for sponges that absorb bits rather than elements of a finite field.
+From this reference and the <a href="https://eprint.iacr.org/2019/458.pdf">Poseidon paper</a>, we can outline the sponge used in Poseidon making the necessary changes in terminology and notation.</p>
+<p>The sponge construction is defined by the following parameters:</p>
+<ul>
+<li>The size of the <em>chunks</em> which are the elements of the finite field <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>;</li>
+<li>The size of the state <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> which is the number of chunks in the sponge;
+<ul>
+<li>The rate <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> which is the number of chunks absorbed in each step;</li>
+<li>The capacity <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> which is the number of chunks stored in the sponge in each step;</li>
+<li>Note that at any given point in the process, we have <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>.</li>
+</ul>
+</li>
+<li>A function <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2244em;vertical-align:-0.3831em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace nobreak"></span><span class="mspace" style="margin-right:0.1111em;"></span><span class="mpunct"></span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mrel">:</span></span><span class="mspace" style="margin-right:0.3333em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3831em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2244em;vertical-align:-0.3831em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3831em;"><span></span></span></span></span></span></span></span></span></span> which is the permutation applied to the sponge, which for Poseidon is a combination of S-Boxes and linear layers;
+<ul>
+<li>The rate can then be described via the <code>bits/perm</code> ratio which is the number of bits in the state divided by the number of bits in the permutation.</li>
+</ul>
+</li>
+<li>A padding function <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span> to pad the input to the sponge to a multiple of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> chunks as needed.</li>
+</ul>
+<p>For Poseidon in particular, we will follow this flow:</p>
+<ol>
+<li>Determine the capacity element value and the input padding if needed. </li>
+<li>Split the obtained input into chunks of size r. </li>
+<li>Apply the permutation Poseidon permuation <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span> (our <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> above, essentially) to the capacity element and the first chunk. </li>
+<li>Until no more chunks are left, add them into the state and apply the permutation. </li>
+<li>Output <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">o</span></span></span></span> output elements out of the rate part of the state. If needed, iterate the permutation more times.</li>
+</ol>
+<p>Looking at this diagramatically, we have the following:
+<img src="poseidon/./figures/sponge.png" alt="Sponge Diagram" /></p>
+<p>TODO: It seems like the chunks are actually of size <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> not <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span></span></span></span> from the field. </p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="permutation-1"><a class="header" href="#permutation-1">Permutation</a></h1>
+<p>We've seen that Poseidon uses a sponge construction to hash data, but the sponge alone is not enough to ensure security.
+This is a common theme in cryptography: we often need to add additional layers of complexity to ensure that our constructions are secure.
+Where one layer has a weakness, another layer can make up for it.
+The permutation is one such layer that Poseidon uses to ensure security.</p>
+<h2 id="permutation-is-like-a-blender"><a class="header" href="#permutation-is-like-a-blender">Permutation is like a blender</a></h2>
+<p>Imagine the Poseidon permutation as a process similar to using a kitchen blender to mix ingredients together.
+We can think of this in the context of the sponge construction, where the permutation is applied to the sponge's state to mix the input data with the existing state.</p>
+<ol>
+<li>
+<p><strong>Initial Setup (State Initialization):</strong></p>
+<ul>
+<li>Think of foods and liquids inside of the blender's jar as a represention of the internal state of the hash function. 
+When it's not blended, the ingredients are still separate and distinct, but once blended, they become a single mixture and are no longer distinguishable.
+The unblended mixture corresponds to the initial state in the Poseidon hash function.</li>
+<li><strong>Blender Jar (Sponge Capacity):</strong>
+<ul>
+<li>This blender jar  effectively represents the internal state of the sponge, which is called its &quot;capacity.&quot; This capacity includes both the part of the state that interacts with the input (like absorbing ingredients) and the part that does not.</li>
+<li>In cryptographic terms, the capacity is crucial for security. It's like having a larger jar that ensures even after adding and mixing ingredients, there's still space left that never directly interacts with the ingredients you add later. This 'unused space' in the jar is what guarantees the security of the hash function.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Adding Ingredients (Input Absorption):</strong></p>
+<ul>
+<li>Each piece of data to be hashed is akin to adding another ingredient to the blender's jar. 
+In Poseidon, this involves integrating the input data into the internal state.</li>
+<li><strong>Amount of Food (Sponge Rate):</strong>
+<ul>
+<li>The amount of food you can add at once to the blender is like the &quot;rate&quot; of the sponge. It's the portion of the sponge's capacity that directly interacts with the input data (or ingredients).</li>
+<li>In the sponge construction, you can only absorb (or add) a certain amount of data in each round, just like you can only add a certain amount of food to the blender at once without overfilling it.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Blending Process (Permutation Rounds):</strong></p>
+<ul>
+<li>The heart of the POSEIDON permutation is akin to the blending process. Here, the blender goes through several rounds of blending, each round mixing the ingredients thoroughly.</li>
+<li>In POSEIDON, each round consists of a series of mathematical operations (like stirring, chopping, or grinding in a blender). These operations include:
+<ul>
+<li><strong>Linear Mixing:</strong> Similar to a gentle stir or a slow blend, ensuring that all parts of the mixture are evenly combined.</li>
+<li><strong>Non-linear Transformation (S-Boxes):</strong> This is like a high-speed blend or pulse, creating complex interactions among the ingredients. It's where the non-linear S-boxes come into play, introducing complexity and security.</li>
+<li><strong>Fixed Permutation Pattern:</strong> Just like following a specific sequence in blending (like pulse, blend, stir), POSEIDON follows a fixed pattern of mixing and transforming in each round.</li>
+</ul>
+</li>
+<li><strong>Blending/Pulsing (Permutation):</strong>
+<ul>
+<li>Once you've added food to the blender (absorbed data into the rate part of the sponge), you start the blending or pulsing. This is analogous to applying the permutation in the sponge construction. This step thoroughly mixes the contents (data) with the existing state.</li>
+<li>The permutation (blending) ensures that the data is uniformly and complexly mixed, contributing to the hash function's security.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Repeating the Rounds:</strong></p>
+<ul>
+<li>Just as some recipes call for you to &quot;blend until smooth&quot;, POSEIDON repeats its blending (permutation) rounds a set number of times to ensure thorough mixing and security.</li>
+</ul>
+</li>
+<li>
+<p><strong>Final Product (Hash Output):</strong></p>
+<ul>
+<li>After the final round of blending, the mixture in the blender represents the transformed state. In the context of the full sponge construction, part of this state is then 'squeezed out' to produce the hash output.</li>
+<li><strong>Satisfaction and Emptying (Squeezing):</strong>
+<ul>
+<li>When you're satisfied with the blending (after sufficient permutations), you pour out the mix from the blender. In the sponge construction, this is akin to the squeezing phase, where part of the state (the equivalent of the mix you pour out) is read out as the hash result.</li>
+<li>If your desired hash output is larger than what you can pour out in one go, you would blend again (apply another permutation) and pour out more, just like making multiple servings from a blender by blending and pouring in stages.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="s-boxes-1"><a class="header" href="#s-boxes-1">S-Boxes</a></h1>
+<p>Poseidon uses S-boxes (Substitution boxes) to apply a non-linear transformation to the input data.
+This non-linearity is crucial for security, as it makes the relationship between the input and output complex and difficult to reverse-engineer or predict.
+In particular, it strengthens the hash against linear and differential cryptanalysis.</p>
+<p>Poseidon uses a specific type of S-boxes, which are based on integer powers of the input.
+This is in contrast to other S-boxes, say used in AES, which may use other types of functions like lookups, multiplicative inverses, or XOR.
+Poseidon typically uses integer powers of the input, such as <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> or <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>.</p>
+<h3 id="why-non-linearity-matters"><a class="header" href="#why-non-linearity-matters">Why Non-linearity Matters</a></h3>
+<ul>
+<li><strong>Resisting Linear Attacks:</strong> Cryptographic algorithms need to withstand linear attacks, where an attacker tries to find linear relations (like invariant subspaces which are like generalizations of eigenvectors) in the algorithm to break it. 
+Non-linear transformations disrupt such linear relationships.</li>
+<li><strong>Diffusion:</strong> Non-linear S-boxes help in spreading the influence of a single input bit over many output bits, a property known as diffusion.</li>
+</ul>
+<h3 id="why-choose-x3-and-x5"><a class="header" href="#why-choose-x3-and-x5">Why choose <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>?</a></h3>
+<ol>
+<li>
+<p><strong>Non-linearity:</strong></p>
+<ul>
+<li>Taking integer powers of numbers like <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>, and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> are inherently non-linear.</li>
+<li>However, even powers (like <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> or <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>) do exhibit some linear-like properties that we can see by doing:<br />
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mord mathnormal">ab</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>
+whwere see see that the <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">2</span><span class="mord mathnormal">ab</span></span></span></span> is itself linear, leading to less non-linear behavior.</li>
+<li>Odd powers ensure a higher degree of non-linearity, which is more effective in thwarting linear and differential cryptanalysis.</li>
+</ul>
+</li>
+<li>
+<p><strong>Efficiency in Finite Fields:</strong></p>
+<ul>
+<li>Computations like <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> can be very efficiently implemented in finite fields, especially those used in cryptographic applications like ZKPs.</li>
+<li>These operations strike a balance between providing sufficient non-linearity and being computationally feasible.
+One could use higher powers like <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">11</span></span></span></span></span></span></span></span></span></span></span></span> or <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">13</span></span></span></span></span></span></span></span></span></span></span></span>, but these would be more computationally expensive.</li>
+<li>ZKPs are typically built on top of polynomial schemes, so using monomials like <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> is a natural choice as they don't require writing complex circuits.</li>
+</ul>
+</li>
+</ol>
+<h3 id="invertibility"><a class="header" href="#invertibility">Invertibility</a></h3>
+<p>If we use a function like <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> or <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> in a cryptographic algorithm, we should be wary of whether it is invertible as this could lead to a vulnerability.
+In the field of real numbers, both <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> are invertible. 
+However, when it comes to finite fields, this isn't always the case.
+In finite fields, the invertibility of functions like <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> or <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> depends on the specific properties of the field, especially its size and characteristic.</p>
+<ol>
+<li>
+<p><strong>General Case:</strong></p>
+<ul>
+<li>In general, for a finite field <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> (where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span></span></span></span> is a prime or a power of a prime), a function <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span> is invertible if and only if <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> is coprime to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> (see this <a href="https://math.stackexchange.com/questions/2239567/necessary-and-sufficient-condition-for-a-map-between-a-finite-field-being-invert">link</a>). This is because of the properties of the multiplicative group of the finite field.</li>
+</ul>
+</li>
+<li>
+<p><strong>Specific Cases of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>:</strong></p>
+<ul>
+<li>Note that <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span> are prime numbers, so they are always coprime to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>.</li>
+</ul>
+</li>
+</ol>
+<h2 id="other-kinds-of-s-boxes"><a class="header" href="#other-kinds-of-s-boxes">Other kinds of S-boxes</a></h2>
+<p>Substitution boxes (S-boxes) are crucial components in many cryptographic systems, used to perform non-linear transformations on input data. 
+While S-boxes like those in the Poseidon hash function often use mathematical functions such as exponentiation in finite fields, there are various other designs and types of S-boxes used in different cryptographic algorithms. 
+Some of these include the use of XOR operations, lookup tables, and more complex algebraic constructions.</p>
+<ul>
+<li><strong>AES (Advanced Encryption Standard):</strong>
+<ul>
+<li>AES uses a fixed S-box for its non-linear transformation step. The S-box is essentially a predefined 256-element lookup table, where each byte of input is replaced by the byte at the corresponding position in the table.</li>
+<li>The construction of the AES S-box is based on the multiplicative inverse in the finite field <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8665em;vertical-align:-0.1776em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5224em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1776em;"><span></span></span></span></span></span></span></span></span></span>, followed by an affine transformation (which includes XOR with a constant).</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="linear-layer-1"><a class="header" href="#linear-layer-1">Linear Layer</a></h1>
+<p>The linear layer is a crucial component that complements the non-linear transformations (like those performed by S-boxes). </p>
+<h3 id="purpose-of-linear-layers-in-hashing"><a class="header" href="#purpose-of-linear-layers-in-hashing">Purpose of linear layers in hashing</a></h3>
+<ol>
+<li>
+<p><strong>Diffusion:</strong></p>
+<ul>
+<li>The primary purpose of the linear layer in POSEIDON is to provide diffusion. 
+Diffusion, as defined by Claude Shannon, is the property of spreading the influence of a single input bit over many output bits.
+In practical terms, this means that changing one bit of the input should change many bits of the output, making the relationship between input and output complex and hard to predict.</li>
+</ul>
+</li>
+<li>
+<p><strong>Efficiency:</strong></p>
+<ul>
+<li>Linear transformations are generally more computationally efficient than non-linear ones. 
+In a hash function like POSEIDON, which is optimized for use in Zero-Knowledge Proofs (ZKPs), maintaining computational efficiency is crucial.</li>
+</ul>
+</li>
+<li>
+<p><strong>Balancing Non-linearity and Linearity:</strong></p>
+<ul>
+<li>While non-linear transformations provide security against certain types of cryptanalysis, a good cryptographic hash function also needs linear components for complete diffusion. 
+The linear layer ensures that the changes made by the non-linear layer (S-boxes) are spread throughout the entire state. 
+This is why it is good to use a linear layer in tandem with non-linear transformations like S-boxes.</li>
+</ul>
+</li>
+</ol>
+<h3 id="maximum-distance-separable-matrix"><a class="header" href="#maximum-distance-separable-matrix">Maximum Distance Separable Matrix</a></h3>
+<p>Maximum Distance Seprarable Matrices(MDS) are commonly used in the linear layer of hash functions.
+It's used in the linear mixing step of cipher algorithms to ensure a high level of <em>diffusion</em>, meaning that a change in a single input bit will affect many output bits. 
+This contributes to the cipher's security by making it resistant to certain types of cryptanalytic attacks. 
+MDS matrices are designed so that any subset of rows (or columns) forms a linearly independent set, maximizing the spread of input differences across the cipher's state.</p>
+<p>The mathematical notion of linear independence refers to a set of vectors in which no vector can be represented as a linear combination of the others. 
+This means that each vector adds a new dimension to the space spanned by the set. 
+For example, in a three-dimensional space, three vectors are linearly independent if none of them lies in the plane formed by the other two. 
+This concept is crucial in many areas of mathematics and is fundamental in understanding the behavior of systems of linear equations and transformations.</p>
+<h4 id="cauchy-matrix"><a class="header" href="#cauchy-matrix">Cauchy Matrix</a></h4>
+<p>A good example of a maximum separable matrix is a Cauchy matrix, which is recommended to be used in the linear layer of Poseidon in the paper.
+A Cauchy matrix is a special type of matrix with elements derived from the Cauchy formula, 
+defined by <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3874em;vertical-align:-0.5423em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5423em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>, where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> are elements 
+from two distinct sets, and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> for all <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span></span></span></span>. 
+Cauchy matrices are known for their high determinant values and good error-correcting capabilities.</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="round-constants"><a class="header" href="#round-constants">Round Constants</a></h1>
+<p>Round constants in hash functions, including those that use the sponge construction, serve several important purposes:</p>
+<ol>
+<li>
+<p><strong>Symmetry Breaking:</strong> Round constants are used to break the symmetry of the state during the permutation process. 
+Without these constants, each round would be identical, and certain patterns or structures in the input could propagate through the rounds unchanged. 
+The constants ensure that each round is unique, preventing these patterns from surviving the hashing process.</p>
+</li>
+<li>
+<p><strong>Avoiding Fixed Points:</strong> A fixed point is when a certain input to the hash function results in the same output (e.g., <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord texttt">hash</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>). 
+Round constants help to avoid such scenarios, which could weaken the hash function's security.</p>
+</li>
+</ol>
+<!-- A good term that shows up in dynamical systems for periodic attractors! -->
+<ol start="3">
+<li>
+<p><strong>Preventing Slide Attacks:</strong> In cryptography, a slide attack is a type of attack that takes advantage of repeating patterns within the rounds of a cryptographic algorithm.
+Round constants mitigate this risk by ensuring that each round of the permutation is distinct.</p>
+</li>
+<li>
+<p><strong>Diffusion:</strong> They contribute to the diffusion property of the hash function by ensuring that the input bits are spread across the resulting hash value, making the output look random.</p>
+</li>
+<li>
+<p><strong>Resisting Cryptanalysis:</strong> By carefully choosing the round constants, designers can protect against specific cryptanalytic attacks that exploit the mathematical structure of the permutation function.</p>
+</li>
+</ol>
+<h2 id="grain-lsfr"><a class="header" href="#grain-lsfr">Grain LSFR</a></h2>
+<p>Some of the most common types of round constants are linear feedback shift registers (LFSRs).
+Grain LFSR (Linear Feedback Shift Register) is a critical component in the Grain family of stream ciphers, which includes Grain v0, Grain v1, and Grain-128 and has been historically used to generate round constants. 
+This family of ciphers is designed for hardware applications and aims to maintain low hardware cost. 
+The Grain LFSR, along with a Nonlinear Feedback Shift Register (NFSR) and a nonlinear filtering function, forms the basis of these ciphers.</p>
+<p>The LFSR in Grain provides a minimum period for the keystream, ensuring a certain level of security against attacks that exploit short periods. 
+It operates on linear feedback principles, where the output is determined by a linear combination of previous bits in the register. 
+This linear combination is defined by a feedback polynomial. 
+The LFSR's role is to guarantee certain statistical properties and the non-repeating nature of the keystream.</p>
+<p>In contrast, the NFSR, which works alongside the LFSR, introduces nonlinearity into the system. 
+This nonlinearity is crucial for cryptographic strength, as linear systems are generally easier to attack. 
+The NFSR's output, along with the LFSR's output, is processed through a nonlinear filtering function to produce the final keystream bit.</p>
+<p>The specific construction and operation of the LFSR in Grain vary slightly between its different versions (v0, v1, and 128), primarily in terms of the length of the register and the feedback polynomial used. 
+However, the underlying principle of providing a predictable, yet cryptographically secure, sequence of bits remains constant across all versions.</p>
+<h2 id="importance-of-round-constants"><a class="header" href="#importance-of-round-constants">Importance of Round Constants</a></h2>
+<p>The following paper is a great resource on the importance of round constants in cryptographic algorithms</p>
+<blockquote>
+<p><a href="https://eprint.iacr.org/2017/463.pdf"><em>Beierle, C., Canteaut, A., Leander, G., &amp; Rotella, Y. (2017). Proving Resistance Against Invariant Attacks: How to Choose the Round Constants. In CRYPTO 2017, LNCS (Vol. 10402, pp. 647-678)</em></a></p>
+</blockquote>
+<p>Briefly, the paper highlights the following points:</p>
+<p><strong>Impact of Round Constants on Security</strong>: The authors demonstrate that the round constants significantly influence a cipher's resistance to invariant attacks. 
+They establish that the rational canonical form of the linear layer and the choice of round constants are crucial factors. 
+Particularly, if the linear layer's invariant factors are few, round constants can be selected to ensure resistance to invariant attacks regardless of the S-box layer.</p>
+<p><strong>Recommendations for Selecting Round Constants</strong>: The authors suggest specific strategies for choosing round constants to maximize security. 
+This includes analyzing the linear layer's structure and selecting constants that ensure a high degree of resistance. 
+The paper provides mathematical methodologies and practical examples to help designers choose optimal round constants.</p>
+<p><strong>Algorithmic Tools for Analysis</strong>: They offer algorithmic approaches to evaluate the security of given ciphers against invariant attacks. 
+These tools are used to analyze popular ciphers like Skinny-64, Prince, and Mantis7, demonstrating their effectiveness in proving or disproving resistance to such attacks.</p>
+<h2 id="notes-on-slide-attacks"><a class="header" href="#notes-on-slide-attacks">Notes on Slide attacks</a></h2>
+<p>The slide attack is a form of cryptanalysis that targets ciphers believed to be strengthened by increasing the number of rounds. 
+This attack renders the number of rounds in a cipher irrelevant. 
+It focuses on analyzing and exploiting weaknesses in the cipher's key schedule, especially when keys repeat cyclically. 
+The slide attack operates by breaking the cipher into identical permutation functions (denoted F) defined by the key schedule. 
+The attacker collects numerous plaintext-ciphertext pairs to identify a 'slid pair', which, once found, compromises the cipher due to its vulnerability to known-plaintext attacks.</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="security-of-poseidon"><a class="header" href="#security-of-poseidon">Security of Poseidon</a></h1>
+<p>As you have seen from our book here, the purpose of this repository is to document a thorough understanding of the Poseidon hash function and its security.
+Let's make sure we understand why this matters.</p>
+<h2 id="security-of-hash-functions"><a class="header" href="#security-of-hash-functions">Security of Hash Functions</a></h2>
+<p>The security of hash functions is a cornerstone in the field of cryptography. 
+Secure hash functions are essential for a variety of applications, from securing passwords to ensuring data integrity and enabling complex cryptographic protocols. 
+Here, we discuss what it means for hash functions to be secure and why these properties are crucial.</p>
+<h2 id="what-makes-a-hash-function-secure"><a class="header" href="#what-makes-a-hash-function-secure">What Makes a Hash Function Secure?</a></h2>
+<p>A secure hash function is designed to satisfy several important properties:</p>
+<h3 id="preimage-resistance"><a class="header" href="#preimage-resistance">Preimage Resistance</a></h3>
+<ul>
+<li><strong>Definition:</strong> Given a hash output <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>, it should be computationally infeasible to find any input <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> such that <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord texttt">hash</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>.
+We refer to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> as a <em>preimage</em> of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span> and we refer to this property as <em>preimage resistance</em>.</li>
+<li>Preimage resistance ensures that even if a hash value is known, the original data cannot be derived from it, protecting against reverse-engineering.
+This is part of the one-way nature of hash functions.</li>
+</ul>
+<h3 id="second-preimage-resistance"><a class="header" href="#second-preimage-resistance">Second Preimage Resistance</a></h3>
+<ul>
+<li><strong>Definition:</strong> Given an input <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, it should be computationally infeasible to find a different input <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> such that <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord texttt">hash</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord texttt">hash</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</li>
+<li>Second preimage resistance property is vital for data integrity, ensuring that the input data cannot be tampered with without changing the hash.</li>
+</ul>
+<h3 id="collision-resistance"><a class="header" href="#collision-resistance">Collision Resistance</a></h3>
+<ul>
+<li><strong>Definition:</strong> It should be computationally infeasible to find any two distinct inputs <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> such that <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord texttt">hash</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord texttt">hash</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</li>
+<li>Collision resistance is crucial for cryptographic applications like digital signatures, where unique hash values are necessary to prevent fraud.</li>
+</ul>
+<h3 id="quick-note"><a class="header" href="#quick-note">Quick note</a></h3>
+<p>When comparing second preimage and collision resistance, I (Colin) found it helpful to think of second preimage resistance as a more robust version of collision resistance as the two seem very similar otherwise.
+Second, preimage resistance is the property that, given a specific input, makes it hard to find another input that hashes to the same value. In contrast, collision resistance is the property that makes it hard to find any two inputs that hash to the same value.
+Your search space is confined in the second preimage resistance since you have one fixed input, but in collision resistance, you can search over all possible inputs and keep track of which ones you have already tried and their hashes.</p>
+<h3 id="why-do-these-security-properties-matter"><a class="header" href="#why-do-these-security-properties-matter">Why Do These Security Properties Matter?</a></h3>
+<p>The security properties of hash functions have direct implications for their practical use:</p>
+<ul>
+<li>
+<p>Data Integrity</p>
+<ul>
+<li>Secure hashes are used to verify data integrity in transmission and storage. Any tampering with the data would result in a different hash value, alerting the system to potential corruption.</li>
+</ul>
+</li>
+<li>
+<p>Authentication</p>
+<ul>
+<li>Hash functions, in combination with digital signatures, authenticate the origin and verify the integrity of messages, preventing impersonation and forgery.</li>
+</ul>
+</li>
+<li>
+<p>Password Security</p>
+<ul>
+<li>Hashing passwords before storing them ensures that even if the hash is compromised, the original password remains protected due to pre-image resistance.</li>
+</ul>
+</li>
+<li>
+<p>Blockchain and Cryptocurrencies</p>
+<ul>
+<li>In blockchain technology, secure hash functions underpin the integrity of the ledger, with each block being linked to the previous one through hashes, creating a tamper-evident chain.</li>
+</ul>
+</li>
+</ul>
+<h2 id="current-state-of-poseidon-security"><a class="header" href="#current-state-of-poseidon-security">Current state of Poseidon security</a></h2>
+<p>There of course has been some existing formal analysis of the security of Poseidon. Some of th</p>
+<h1 id="algebraic-hash-cryptanalysis"><a class="header" href="#algebraic-hash-cryptanalysis">Algebraic Hash Cryptanalysis</a></h1>
+<p>Algebraic attacks on cryptographic hash functions involve exploiting the algebraic properties and structures within the hash function. These attacks may attempt to solve equations that describe the hash function's behavior or find vulnerabilities in its algebraic representation. The Poseidon hash function's design and analysis likely include considerations to mitigate such attacks, but the exact methodologies and conclusions drawn in the paper are not accessible in this context.</p>
+<h2 id="interpolation-attack"><a class="header" href="#interpolation-attack">Interpolation Attack</a></h2>
+<p>This attack attempts to construct an interpolation polynomial that accurately describes the hash function. If the number of unknown monomials in the polynomial is sufficiently large, constructing it becomes as hard as a brute-force attack. For Poseidon, the security against this type of attack is related to the number of different monomials in the interpolation polynomial, which depends on the degree of the function.</p>
+<p>The mathematical intuition behind this attack is that a higher number of rounds generally increases the complexity of the interpolation polynomial, making it more difficult for an attacker to construct or exploit it accurately. The parameters of the Poseidon hash function, including the size of the finite field (denoted by p), the number of S-boxes applied per round, and the algebraic properties of these S-boxes, directly influence the number of different monomials in the interpolation polynomial.</p>
+<p>The number of rounds required to prevent this attack, denoted by the sum of partial and full rounds <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RF</span></span></span></span> is bound by </p>
+<!-- need to understand this more -->
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">RF</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.0573em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.0573em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mop">min</span><span class="mopen">{</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mclose">)}</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="linear-cryptanalysis"><a class="header" href="#linear-cryptanalysis">Linear Cryptanalysis</a></h1>
+<h2 id="invarient-subspace-attack"><a class="header" href="#invarient-subspace-attack">Invarient subspace attack</a></h2>
+<p>An invariant subspace attack on a cryptographic hash function, like Poseidon, involves finding a subset of the input space that maps to itself or another invariant set under the hash function's transformations.
+Mathematically, if <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> is in this subset, then <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span>, where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> is the hash function, is also in this subset.
+The attacker exploits this invariance to predict outputs or find collisions. 
+The effectiveness of such attacks depends on the hash function's specific design and mathematical properties, including its non-linear and linear components.</p>
+<h2 id="linear-cryptanalysis-1"><a class="header" href="#linear-cryptanalysis-1">Linear Cryptanalysis</a></h2>
+<p>A linear attack on a cryptographic hash function involves finding a linear relationship between the input and output bits. Attackers exploit these linear approximations to predict the hash output, which could compromise the hash function's security. In the Poseidon hash function context, the paper analyzes its resilience to linear attacks by examining its structure and transformations. The mathematical intuition behind this analysis focuses on the degree of linearity in the hash function's operations. The more non-linear the function, the less susceptible it is to linear attacks, enhancing its security.</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="differential-cryptanalysis"><a class="header" href="#differential-cryptanalysis">Differential Cryptanalysis</a></h1>
+<p>Differential cryptanalysis is a method of cryptanalysis that exploits the characteristics of differential probabilities to break a cipher. 
+It is a general form of cryptanalysis that can be applied to many ciphers, including block ciphers, stream ciphers, and hash functions. 
+The attack involves finding a difference between two plaintexts, resulting in a specific difference in the ciphertexts. 
+The attacker then uses this information to recover the secret key. 
+This attack is particularly effective against block ciphers that use a substitution-permutation network (SPN) structure.</p>
+<p>The probability of successful differential attacks on Poseidon is determined by analyzing the number of active S-boxes in its structure. 
+Poseidon is designed with a certain number of rounds, each involving substitution (S-boxes) and permutation steps. 
+The security against differential attacks is higher when more active S-boxes are involved, as this increases the complexity and reduces the probability of finding exploitable differential patterns. 
+The mathematical intuition hinges on the observation that each active S-box significantly reduces the likelihood of a successful differential attack by increasing the nonlinearity and complexity of the transformation.</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="algebraic-cryptanalysis"><a class="header" href="#algebraic-cryptanalysis">Algebraic Cryptanalysis</a></h1>
+<h2 id="gröbner-basis-attack"><a class="header" href="#gröbner-basis-attack">Gröbner Basis Attack</a></h2>
+<p>A Gröbner basis is a particular kind of generating set of a polynomial ideal in multivariate polynomial rings. It has properties that make the solution of polynomial systems simpler and more efficient. A Gröbner basis for an ideal is a set of polynomials from which one can derive the same solutions to the polynomial system as from the original set of polynomials, but with more straightforward computation, particularly for solving systems of equations and testing ideal membership.</p>
+<p>The paper outlines three steps regarding the attack:</p>
+<h4 id="polynomial-modeling"><a class="header" href="#polynomial-modeling">Polynomial Modeling</a></h4>
+<p>The first step to performing a Gröbner basis attack is to model the hash function as a system of polynomial equations. This involves expressing each step of the hash function (like the S-boxes and linear layers) in polynomial form. Then, using a chosen monomial order (such as degrevlex), a Gröbner basis algorithm like Buchberger's algorithm or F4/F5 algorithms is applied to these polynomial equations. The process iteratively refines the initial set of equations into a Gröbner basis, which simplifies the system and makes it easier to analyze algebraically.</p>
+<h4 id="gröbner-basis-computation"><a class="header" href="#gröbner-basis-computation">Gröbner Basis Computation</a></h4>
+<p>The next step is to compute a Gröbner basis for the ideal spanned by the list of polynomials, typically using a degree-refining term order such as degrevlex.</p>
+<h5 id="degrevlex-order"><a class="header" href="#degrevlex-order">Degrevlex Order</a></h5>
+<p>The &quot;degrevlex&quot; order, short for &quot;degree reverse lexicographic order,&quot; is a specific type of monomial ordering used in computational algebra, particularly in the computation of Gröbner bases. In this ordering, monomials are first compared by their total degree, with lower degree monomials being considered smaller. If two monomials have the same total degree, a reverse lexicographic order is applied, which means the monomials are compared based on the powers of their variables, starting from the last variable and moving backwards. This order is commonly used due to its computational efficiency in Gröbner basis calculations.</p>
+<h4 id="term-order-change"><a class="header" href="#term-order-change">Term Order Change</a></h4>
+<p>The process of converting from a degrevlex to a lexicographical order in a Gröbner basis involves a sequence of computational steps. These steps reorient the basis from a degree-based prioritization (degrevlex) to one where variables are considered in a strict order (lexicographical). This reordering aligns the basis with the natural order of variables, which can be essential for solving systems of equations or performing further algebraic manipulations. </p>
+<h4 id="computing-the-solution"><a class="header" href="#computing-the-solution">Computing the solution</a></h4>
+<p>The last step in a Gröbner basis attack typically involves solving the system of equations represented by the Gröbner basis to find the hash function's pre-image or collision. The Euclidean algorithm and polynomial factorization are used to simplify and solve these equations.</p>
+<p>I think this is the best resource on Gröbner bases attacks</p>
+<blockquote>
+<p><a href="https://eprint.iacr.org/2021/870.pdf">Sauer, J. F., &amp; Szepieniec, A. (2021). Sok: Gröbner basis algorithms for arithmetization oriented ciphers. Cryptology ePrint Archive.</a></p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="new-thoughts"><a class="header" href="#new-thoughts">New Thoughts</a></h1>
+<h2 id="dynamical-systems"><a class="header" href="#dynamical-systems">Dynamical Systems</a></h2>
+<p>Discrete dynamical systems typically study sequences of continuous transformations applied to sets. 
+For instance, you will see a lot of dynamical systems written as:
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord">.</span></span></span></span></span>
+One of the hallmarks of dynamical systems is that they are often chaotic.</p>
+<p>Even the simplest dynamical systems can exhibit chaotic behavior.
+We often see beautiful fractals and other interesting patterns emerge from periodic, quasiperiodic, ergodic, and chaotic dynamical systems.
+Take for example the classical system called the <em>logistic map</em> which has the governing equation:
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:2em;"></span><span class="mord text"><span class="mord textrm"> for </span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mord text"><span class="mord textrm"> and </span></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">]</span><span class="mord">.</span></span></span></span></span>
+This system is often studied due to its simplicity in construction, but the presence of chaotic behavior.</p>
+<p>Chaos is often defined as <em>sensitive dependence on initial conditions</em>.
+In this sense, a chaotic system can seemingly behave randomly, but is actually deterministic.
+This feels quite similar to the idea of a hash function.</p>
+<p><img src="security/./figures/logistic_map_plot.png" alt="" /></p>
+<p>In the figure above, we track the path of two different starting points <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.50</span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.49</span></span></span></span>. 
+Their trajectories are seemingly random and uncorrelated due to choosing such a large value of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span>, but they are actually deterministic and governed by the same equation.</p>
+<h2 id="ergodicity"><a class="header" href="#ergodicity">Ergodicity</a></h2>
+<p>Ergodicity is a property of dynamical systems that essentially means that the system explore the space of possible states with equal probability over time.
+Intuitively, its as if an <em>ergodic transformation</em> is a transformation that &quot;mixes&quot; or &quot;stirs&quot; the space of possible states in a way that is uniform.</p>
+<p>The simplest example of an ergodic transformation is a rotation of the circle by some irrational angle (meaning not a fraction of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>) <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span></span> (in radians). If we continuously apply the map:
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:1em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span></span></span></span></span>
+then we get a system that is ergodic.
+We will continuously explore the entire circle with equal probability over long enough periods of times (iterations).</p>
+<h2 id="attacking-poseidon-with-a-neural-network"><a class="header" href="#attacking-poseidon-with-a-neural-network">Attacking Poseidon with a Neural Network</a></h2>
+<p>How would this work?</p>
+<h3 id="questions"><a class="header" href="#questions">Questions</a></h3>
+<ul>
+<li>Dynamical systems typically works over the reals <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span>, but Poseidon works over a finite field <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>. How does this change things? Is there a way to think about Poseidon as a dynamical system over <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> that is meaningful? Even just focusing on the S-boxes, can we think of them as dynamical systems over <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> in a way that shows these are close to, or are, &quot;chaotic&quot;?</li>
+<li>Also related was the notion of ergodicity. Can we think of Poseidon as an ergodic transformation over <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.975em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>? What does this mean? Is this meaningful? What does this tell us about the security of Poseidon?</li>
+<li>Does thinking about Poseidon as a dynamical system help us understand the security of the hash function? For instance, if we could show that Poseidon is not ergodic and not chaotic, would this show a reduced security metric for the hash function? Or is this not meaningful? On the other hand, if we could show that Poseidon is ergodic and chaotic, would this be validation of the current security metrics? Or is this not meaningful?</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="resources"><a class="header" href="#resources">Resources</a></h1>
+<p>Throughout our research, we have found many resources that have helped us understand the concepts behind Poseidon and the field of symmetric cryptography. We have compiled a list of these resources here, and we hope that they will be useful to you as well.</p>
+<h1 id="papers-and-books"><a class="header" href="#papers-and-books">Papers and books</a></h1>
+<h2 id="books"><a class="header" href="#books">Books</a></h2>
+<blockquote>
+<p><a href="https://github.com/isislovecruft/library--/blob/master/cryptography%20%26%20mathematics/An%20Introduction%20to%20Mathematical%20Cryptography%20(2014)%20-%20Hoffstein%2C%20Pipher%2C%20Silverman.pdf">Silverman, J. H., Pipher, J., &amp; Hoffstein, J. (2008). An introduction to mathematical cryptography (Vol. 1). Springer New York.</a>
+&quot;An Introduction to Mathematical Cryptography&quot; by Hoffstein, Pipher, and Silverman is a highly valuable resource for those seeking a deep understanding of the mathematical principles in cryptography. 
+Its thorough coverage of both classical and modern cryptographic techniques, combined with a clear explanation of underlying mathematical concepts, makes it great introductory matterial. 
+The book strikes a balance between theory and practice, offering insights into the practical applications of the discussed mathematical methods. 
+Its comprehensive approach ensures that readers gain a solid foundation in cryptographic principles.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://joyofcryptography.com">Rosulek, M. (n.d.). The Joy of Cryptography.</a>
+&quot;The Joy of Cryptography&quot; is an accessible, undergraduate-level textbook that provides a comprehensive introduction to the principles of modern cryptography. 
+The author, Mike Rosulek, emphasizes a deep understanding of the subject, focusing on provable security aspects and offering insight into how cryptographic protocols are constructed to resist various attacks. 
+The book is known for its clear explanations and practical examples, making complex concepts approachable. 
+It's particularly useful for students and practitioners who wish to gain a solid grounding in cryptography without getting overwhelmed by overly technical details. </p>
+</blockquote>
+<h2 id="papers"><a class="header" href="#papers">Papers</a></h2>
+<blockquote>
+<p><a href="https://eprint.iacr.org/2019/953.pdf">Gabizon, A., Williamson, Z. J., &amp; Ciobotaru, O. (2019). Plonk: Permutations over lagrange-bases for oecumenical noninteractive arguments of knowledge. Cryptology ePrint Archive.</a>
+&quot;PlonK: Permutations over Lagrange-bases for Oecumenical Noninteractive arguments of Knowledge&quot; by Ariel Gabizon, Zachary J. Williamson, and Oana Ciobotaru, focuses on enhancing zk-SNARK constructions, specifically addressing the efficiency of proof construction and verification. 
+It presents a universal SNARK with fully succinct verification and significantly reduced prover running time. 
+The paper emphasizes improvements in arithmetization, utilizing permutations over univariate evaluations on a multiplicative subgroup. 
+This approach offers a more direct and efficient verification process compared to previous models like Sonic, making it practical for a wider range of real-world applications in cryptography.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://eprint.iacr.org/2019/458.pdf">Grassi, L., Khovratovich, D., Rechberger, C., Roy, A., &amp; Schofnegger, M. POSEIDON: A New Hash Function for Zero-Knowledge Proof Systems (Updated Version).</a>
+&quot;POSEIDON: A New Hash Function for Zero-Knowledge Proof Systems&quot; by Grassi, Khovratovich, Rechberger, Roy, and Schofnegger, presents a modular framework for cryptographic hash functions optimized for zero-knowledge proof systems like SNARKs and STARKs. 
+It introduces the POSEIDON hash function, designed to work efficiently with large prime fields and aims to be more constraint-efficient than existing hash functions like Pedersen Hash. 
+The paper details the security analysis of POSEIDON, its applications in various cryptographic systems, and comparisons with other hash functions. </p>
+</blockquote>
+<blockquote>
+<p><a href="https://eprint.iacr.org/2021/870.pdf">Sauer, J. F., &amp; Szepieniec, A. (2021). Sok: Gröbner basis algorithms for arithmetization oriented ciphers. Cryptology ePrint Archive.</a>
+&quot;SoK: Gröbner Basis Algorithms for Arithmetization Oriented Ciphers&quot; by Jan Ferdinand Sauer and Alan Szepieniec provides an in-depth study of Gröbner basis algorithms in the context of arithmetization-oriented ciphers. 
+It surveys key algorithms, emphasizing their intuitive understanding and complexity analysis, aiding in assessing the security of these ciphers. In my opinion, this is the best resource on Gröbner bases attacks.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://keccak.team/files/CSF-0.1.pdf">Guido, B., Joan, D., Michaël, P., &amp; Gilles, V. A. (2011). Cryptographic sponge functions.</a>
+&quot;Cryptographic Sponge Functions&quot; offers an extensive exploration of sponge functions in cryptography. 
+It details their fundamentals, applications, and security aspects. 
+The document is notable for its thorough coverage, practical application discussions, security analysis, and accessibility to readers with basic cryptography knowledge. 
+It's a valuable resource for understanding the role of sponge functions in cryptographic systems, catering to both theoreticians and practitioners in the field.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://eprint.iacr.org/2017/463.pdf">Beierle, C., Canteaut, A., Leander, G., &amp; Rotella, Y. (2017, July). Proving resistance against invariant attacks: How to choose the round constants. In Annual International Cryptology Conference (pp. 647-678). Cham: Springer International Publishing.</a>
+&quot;Proving Resistance against Invariant Attacks: How to Choose the Round Constants,&quot; focuses on the resistance of lightweight block ciphers against invariant attacks, specifically addressing the selection of round constants in cipher design. 
+It provides a detailed analysis of how the linear layer and round constants influence resistance to such attacks, using examples like Prince, Skinny-64, and Mantis7.
+The authors propose a framework to analyze and prove resistance, emphasizing the mathematical properties critical for ensuring security against invariant attacks. 
+They also offer practical guidelines for choosing round constants and analyze various ciphers' resistance levels.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://eprint.iacr.org/2009/109.pdf">Zhang, H., &amp; Wang, X. (2009). Cryptanalysis of stream cipher grain family. Cryptology ePrint Archive.</a>
+&quot;Cryptanalysis of Stream Cipher Grain Family,&quot; examines vulnerabilities in the Grain family of stream ciphers, including Grain v0, Grain v1, and Grain-128. 
+The authors present a distinguishing attack against weak Key-IV (Initialisation Vector) combinations in these ciphers, using the second Walsh spectra of nonlinear functions to identify weak Key-IV pairs. 
+They demonstrate that these weak Key-IVs can be distinguished with relatively few keystream bits and moderate computational effort. 
+Additionally, they apply algebraic attacks to recover the secret key for these weak Key-IVs efficiently. 
+The paper highlights significant security concerns in the Grain family, particularly in the context of weak Key-IV pairs, and suggests improvements for their cryptographic robustness.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="blogs-and-code"><a class="header" href="#blogs-and-code">Blogs and Code</a></h1>
+<h2 id="blogs"><a class="header" href="#blogs">Blogs</a></h2>
+<blockquote>
+<p><a href="https://hackmd.io/bHgsH6mMStCVibM_wYvb2w">Khovratovich, D., Aumasson, J. P., Quine, P., &amp; Mennink, B. (n.d.). SAFE (Sponge API for Field Elements) – A Toolbox for ZK Hash Applications. HackMD.</a>
+The authors define a unified Sponge API for Field Elements (SAFE), which provides ZK proof systems designers with a secure and efficient framework for hashing, encryption, and applications thereof (commitment schemes, Fiat-Shamir transforms, AEAD, and so on). 
+The authors do not restrict the permutation algorithm nor the field type, thus SAFE can be instantiated with established constructions.
+The API supports various permutations and applications like hashing, Fiat-Shamir transforms, and authenticated encryption, but excludes variable-length hashing due to complexity and performance issues. </p>
+</blockquote>
+<blockquote>
+<p><a href="https://jfs.sh/blog/">Fichtner, J. (2021, June 28). Gröbner Basis-Attacking a Tiny Sponge. </a>
+I personally recommend this blog post by Jannik Fichtner, which provides a detailed explanation of Gröbner basis attacks on the Poseidon hash function. 
+The blog at large covers advanced topics in cryptography and mathematics, focusing on areas like Gröbner bases, sponge functions, and Hilbert regularity. 
+The posts delve into technical aspects and provide insightful analyses, often exploring the intersection between theoretical concepts and practical cryptographic applications.</p>
+</blockquote>
+<h2 id="code"><a class="header" href="#code">Code</a></h2>
+<blockquote>
+<p><a href="https://github.com/lurk-lab/neptune">lurk-lab. (2023). Neptune: Rust Poseidon implementation. GitHub.</a>
+This is a well done production implementation of Poseidon in Rust. We initially really wanted to try to attack this implementation however neptune doesn't support field sizes smaller than 32bits and we wanted to start with a smaller field size.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/ingonyama-zk/poseidon-hash?tab=readme-ov-file">ingonyama-zk. (2023). Poseidon-hash: Reference implementation in Python of Poseidon and optimized Poseidon (Neptune) hash functions. GitHub.</a>
+This refrerence implementation of Poseidon in Python is a great resource for understanding the algorithms involved in Poseidon. The repository is well documented and easy to follow. It has a good test sweet and proves to be a gentle introduction to understanding the Poseidon hash function.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/arnaucube/poseidon-rs">arnaucube. (2023). Poseidon-rs: Poseidon hash function. GitHub.</a>
+This is another implementation of Poseidon in Rust. While it is less documented it is incredibly simple making it a really good place to start with rust. The whole implementation is contained in 2 small files. </p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="videos-and-talks"><a class="header" href="#videos-and-talks">Videos and talks</a></h1>
+<blockquote>
+<p><a href="https://www.youtube.com/watch?v=gWCaNyRSdTo"></a>
+This was an excellent lecture by Swastik Kopparty through the simmons institute</p>
+</blockquote>
+<!-- >Proofs, Arguments, and Zero-Knowledge by 
+@SuccinctJT
+ 
+>Why and How zk-SNARK Works by 
+@maksympetkus
+
+>A Graduate Course in Applied Cryptography by 
+@danboneh and Victor Shoup
+
+>Real World Cryptography by 
+@cryptodavidw
+ 
+>Pairings for Beginners by Craig Costello
+
+>Crypto 101
+
+>Real world cryptography
+
+>Understanding Cryptography
+
+>Serious Cryptography
+
+>The arithmetic of Elliptic curves
+
+>MoonMath manual -->
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="people-and-courses"><a class="header" href="#people-and-courses">People and courses</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>

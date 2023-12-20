@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Overview - Poseidon Journal</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview/index.html" class="active"><strong aria-hidden="true">1.</strong> Overview</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="overview/curriculum.html"><strong aria-hidden="true">1.1.</strong> Curriculum</a></li><li class="chapter-item expanded "><a href="overview/motivation.html"><strong aria-hidden="true">1.2.</strong> motivation</a></li></ol></li><li class="chapter-item expanded "><a href="poseidon/index.html"><strong aria-hidden="true">2.</strong> Poseidon</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="poseidon/construction.html"><strong aria-hidden="true">2.1.</strong> Construction</a></li><li class="chapter-item expanded "><a href="poseidon/scalar_field.html"><strong aria-hidden="true">2.2.</strong> Scalar Field</a></li><li class="chapter-item expanded "><a href="poseidon/sponge.html"><strong aria-hidden="true">2.3.</strong> Sponge</a></li><li class="chapter-item expanded "><a href="poseidon/permutation.html"><strong aria-hidden="true">2.4.</strong> Permutation</a></li><li class="chapter-item expanded "><a href="poseidon/s-boxes.html"><strong aria-hidden="true">2.5.</strong> S-Boxes</a></li><li class="chapter-item expanded "><a href="poseidon/linear_layer.html"><strong aria-hidden="true">2.6.</strong> Linear Layer</a></li><li class="chapter-item expanded "><a href="poseidon/round_constants.html"><strong aria-hidden="true">2.7.</strong> Round Constants</a></li></ol></li><li class="chapter-item expanded "><a href="security/index.html"><strong aria-hidden="true">3.</strong> Security</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="security/linear_cryptanalysis.html"><strong aria-hidden="true">3.1.</strong> Linear Cryptanalysis</a></li><li class="chapter-item expanded "><a href="security/differential_cryptanalysis.html"><strong aria-hidden="true">3.2.</strong> Differential Cryptanalysis</a></li><li class="chapter-item expanded "><a href="security/algebraic_cryptanalysis.html"><strong aria-hidden="true">3.3.</strong> Algebraic Cryptanalysis</a></li><li class="chapter-item expanded "><a href="security/new_thoughts.html"><strong aria-hidden="true">3.4.</strong> New Ideas for attacks</a></li></ol></li><li class="chapter-item expanded "><a href="resources/index.html"><strong aria-hidden="true">4.</strong> Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="resources/blogs_and_code.html"><strong aria-hidden="true">4.1.</strong> Blogs and Code</a></li><li class="chapter-item expanded "><a href="resources/videos_talks.html"><strong aria-hidden="true">4.2.</strong> Videos and talks</a></li><li class="chapter-item expanded "><a href="resources/people_courses.html"><strong aria-hidden="true">4.3.</strong> People and courses</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Poseidon Journal</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="diving-into-poseidon-hash-and-its-security"><a class="header" href="#diving-into-poseidon-hash-and-its-security">Diving into Poseidon hash and its security</a></h1>
+<p>The purpose of this work is to document a thorough understanding of the Poseidon hash function and its security. 
+This document is a work in progress and will be updated as we and the community learn more about the topic.</p>
+<p>As a forewarning, this document is a continual work in progress.
+Material in here is subject to change, there may be errors, and there may be things that are not fully explained.
+We would love to hear your feedback and suggestions for improvement and are happy to answer any questions you may have.
+Community engagement, open source development, and collaborative learning are core values for us, so please reach out!</p>
+<h2 id="contents"><a class="header" href="#contents">Contents</a></h2>
+<ul>
+<li><strong>Overview</strong>
+<ul>
+<li><strong>Curriculum</strong>: Providing you with a list of relevant topics that will come up with Poseidon.</li>
+<li><strong>Goals</strong>: Providing you with a list of goals that we want to achieve with this repository.</li>
+</ul>
+</li>
+<li><strong>Poseidon</strong>
+<ul>
+<li><strong>Construction</strong>: Explaining the construction of the Poseidon hash function at a high level.</li>
+<li><strong>Scalar Field</strong>: Explaining how scalar (finite) fields are used in Poseidon.</li>
+<li><strong>Sponge</strong>: Explaining the sponge construction used in Poseidon both intuitively and formally.</li>
+<li><strong>Permutation</strong>: Explaining the permutation used in Poseidon intuitively.</li>
+<li><strong>S-Boxes</strong>: Explaining the S-Boxes used in Poseidon formally and comparing to techniques used in other hashes.</li>
+<li><strong>Linear Layer</strong>: Explaining the linear layer used in Poseidon formally.</li>
+<li><strong>Round Constants</strong>: Explaining the round constants used in Poseidon formally.</li>
+</ul>
+</li>
+<li><strong>Security</strong>
+<ul>
+<li><strong>Linear Cryptanalysis</strong>: Explaining linear cryptanalysis and how it can be used to attack Poseidon.</li>
+<li><strong>Differential Cryptanalysis</strong>: Explaining differential cryptanalysis and how it can be used to attack Poseidon.</li>
+<li><strong>Algebraic Cryptanalysis</strong>: Explaining algebraic cryptanalysis and how it can be used to attack Poseidon.</li>
+<li><strong>New Thoughts</strong>: Explaining new thoughts on cryptanalysis of Poseidon.</li>
+</ul>
+</li>
+</ul>
+<h2 id="poseidon-crate"><a class="header" href="#poseidon-crate">Poseidon crate</a></h2>
+<p>We are also developing our own hand-baked implementation of Poseidon in Rust.
+This is a work in progress, but the code is located in <code>./poseidon</code> and can be built via <code>cargo build</code>.</p>
+<h3 id="purpose"><a class="header" href="#purpose">Purpose</a></h3>
+<p>To understand something well, it is often helpful to implement it yourself.
+Plus, we are strong believers that researchers should be able to implement their own ideas and test them out.
+Researchers can be builders, and builders can do research (and love math!).</p>
+<h3 id="intention"><a class="header" href="#intention">Intention</a></h3>
+<p>The idea is to implement Poseidon in Rust and then use it to test out different ideas and attacks.
+The production versions of Poseidon should also be tested in their own right, but we plan to test the methodology of Poseidon and, given that, it is nice to make Poseidon less secure to demonstrate how to find collisions, find preimages, and orchestrate attacks all in one place and without it taking an unbelievable amount of time. 
+Keep in mind, searching through the space of all possible hashes is a very large space, so even with a noticeably less secure version of Poseidon, it will still take a long time to find collisions and preimages!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="overview/curriculum.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="overview/curriculum.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
